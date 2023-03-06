@@ -4,5 +4,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('polls/', include('polls.urls', namespace='polls')),
+    path('auth/', include('users.urls', namespace='users')),
+    path('auth/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
