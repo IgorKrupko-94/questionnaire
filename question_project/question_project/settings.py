@@ -2,7 +2,6 @@ import os
 
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,6 +48,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.year.year',
             ],
         },
     },
