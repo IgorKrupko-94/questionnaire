@@ -1,0 +1,29 @@
+<header>
+  {% load static %}
+  <nav class="navbar navbar-light" style="background-color: lightsalmon">
+    <div class="container">
+      <ul class="nav nav-pills">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link link-light" href="{% url 'password_change' %}">
+            Изменить пароль
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" href="{% url 'logout' %}">Выйти</a>
+        </li>
+        <li>
+          Пользователь: {{ user.username }}
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link link-light" href="{% url 'login' %}">Войти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" href="{% url 'users:signup' %}">Регистрация</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>

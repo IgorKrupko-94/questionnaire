@@ -10,8 +10,7 @@
         Дата публикации: {{ question.pub_date|date:"d E Y" }}
     </li>
     <li>
-        <a href="{% url 'polls:detail' question.id %}">{{
-            question.question_text }}</a>
+        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
     </li>
     {% if not forloop.last %}
     <hr>

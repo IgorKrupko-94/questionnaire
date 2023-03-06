@@ -12,7 +12,6 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class ChoiceAdmin(admin.ModelAdmin):
     list_display = ('question', 'choice_text', 'votes')
-    list_editable = ('question',)
     search_fields = ('choice_text',)
     list_filter = ('question',)
     empty_value_display = '-пусто-'
