@@ -1,13 +1,19 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.core.paginator import Paginator
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.views import generic
 
-from .models import Question
+from .models import Question, Choice
 
 
 def index(request):
     latest_question_list = Question.objects.all()
-    context = {'latest_question_list': latest_question_list}
+    paginator = Paginator(latest_question_list, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
     return render(request, 'polls/index.html', context)
 
 
@@ -18,6 +24,26 @@ def detail(request, question_id):
     return render(request, 'polls/detail.html', context)
 
 
+@login_required
 def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    context = {'question': question}
+    return render(request, 'polls/results.html', context)
+
+
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choices.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "Вы не выбрали ни одного варианта.",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse(
+            'polls:results',
+            args=(question.id,)
+        ))

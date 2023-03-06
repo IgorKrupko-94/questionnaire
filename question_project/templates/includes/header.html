@@ -3,6 +3,11 @@
   <nav class="navbar navbar-light" style="background-color: lightsalmon">
     <div class="container">
       <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link link-light" href="{% url 'polls:index' %}">
+            Вернуться на главную
+          </a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link link-light" href="{% url 'password_change' %}">
@@ -12,7 +17,7 @@
         <li class="nav-item">
           <a class="nav-link link-light" href="{% url 'logout' %}">Выйти</a>
         </li>
-        <li>
+        <li class="nav-item nav-link link-dark">
           Пользователь: {{ user.username }}
         </li>
         {% else %}

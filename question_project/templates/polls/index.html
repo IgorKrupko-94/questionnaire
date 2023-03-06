@@ -3,9 +3,11 @@
 Главная страница
 {% endblock title %}
 {% block content %}
-{% if latest_question_list %}
+{% if page_obj %}
 <ul>
-    {% for question in latest_question_list %}
+    {% for question in page_obj %}
+    <br>
+    <br>
     <li>
         Дата публикации: {{ question.pub_date|date:"d E Y" }}
     </li>
@@ -20,4 +22,5 @@
 {% else %}
 <p>Нет доступных опросов</p>
 {% endif %}
+{% include 'polls/paginator.html' %}
 {% endblock content %}
