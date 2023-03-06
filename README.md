@@ -6,6 +6,7 @@
 - Django
 - HTML
 - CSS
+- PostgreSQL
 
 ## Запуск проекта в dev-режиме
 Клонировать репозиторий и перейти в него в командной строке:
@@ -35,6 +36,10 @@ python -m pip install --upgrade pip
 ``` 
 pip install -r requirements.txt 
 ```
+Проект настроен к использованию СУБД PostgreSQL, 
+поэтому для начала необходимо создать базу данных. 
+Инструкцию по настройке можно найти тут:
+https://docs.djangoproject.com/en/2.2/intro/tutorial02/
 Выполняем миграции:
 ``` 
 python manage.py makemigrations
