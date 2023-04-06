@@ -50,4 +50,4 @@ python manage.py migrate
 python manage.py runserver 
 ```
 ### Autor
-Igor Krupko
+#Igor Krupko
